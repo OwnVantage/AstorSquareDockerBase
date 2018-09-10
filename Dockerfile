@@ -23,7 +23,7 @@ RUN yum -y install epel-release
 RUN yum -y install python-pip
 RUN pip install --upgrade pip
 RUN yum -y install httpd httpd-tools
-
+RUN yum -y install less
 RUN yum -y install npm
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
