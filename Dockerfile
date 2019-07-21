@@ -1,7 +1,6 @@
 # Use an official Python runtime as a parent image
-FROM centos:latest
-#node:4.3.2
-#FROM python:2.7-slim
+FROM centos/python-36-centos7:latest
+USER root
 ENV container docker
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
@@ -17,6 +16,8 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 WORKDIR /var
 ADD requirements.txt /var
 
+RUN yum install -y gcc-c++ make
+RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum -y update
 RUN yum -y install python-setuptools python-dev build-essential
 RUN yum -y install epel-release
@@ -24,7 +25,7 @@ RUN yum -y install python-pip
 RUN pip install --upgrade pip
 RUN yum -y install httpd httpd-tools
 RUN yum -y install less
-RUN yum -y install npm
+RUN yum -y install nodejs
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
