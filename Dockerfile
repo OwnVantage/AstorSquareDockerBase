@@ -32,7 +32,7 @@ RUN yum -y install python-devel
 RUN yum -y install python-tools
 RUN yum -y install python-virtualenv
 RUN yum -y install certbot
-RUN echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && /usr/local/bin/certbot renew" | tee -a /etc/crontab > /dev/null
+RUN echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && /usr/bin/certbot renew" | tee -a /etc/crontab > /dev/null
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
