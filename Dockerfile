@@ -17,7 +17,7 @@ WORKDIR /var
 ADD requirements.txt /var
 
 RUN yum install -y gcc-c++ make
-RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - 
 RUN yum -y update
 RUN yum -y install python-setuptools python-dev build-essential
 RUN yum -y install epel-release
