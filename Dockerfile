@@ -18,6 +18,9 @@ ADD requirements.txt /var
 
 RUN yum install -y gcc-c++ make
 RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - 
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+RUN yum -y install yarn
 RUN yum -y update
 RUN yum -y install python-setuptools python-dev build-essential
 RUN yum -y install epel-release
